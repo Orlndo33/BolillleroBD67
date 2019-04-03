@@ -6,26 +6,75 @@ using System.Threading.Tasks;
 
 namespace Bolillero
 {
-    public class Bolillero
+    public class Bolillero : ICloneable
     {
         Random r;
-        List<int> bolillasD { get; set; }
-        List<int> bolillasA { get; set; }
+        List<byte> bolillasD { get; set; }
+        List<byte> bolillasA { get; set; }
 
         public Bolillero()
         {
-            bolillasA = new List<int>();
-            bolillasD = new List<int>();
+            bolillasA = new List<byte>();
+            bolillasD = new List<byte>();
         }
 
-        public int sacarBolilla()
+        private int indiceAlAzar()
         {
-            int s = r.Next(0, bolillasD.Count);
-            bolillasD.RemoveAt(s);
-            
-            return s;
+            return r.Next(0,bolillasD.Count()-1);
+        }
+        public byte sacarBolilla()
+        {
+            int b = indiceAlAzar();
+
+            var v = bolillasD[b];
+            bolillasA.Add(v);
+            bolillasD.Remove(v);
+
+            return v;
         }
 
-        public int 
+        public void reingresarBolillas()
+        {
+            bolillasA.AddRange(bolillasD);
+            bolillasA.Clear();
+        }
+
+        public void sacarBolilla(byte unaBolilla)
+        {
+            bolillasA.Add(unaBolilla);
+            bolillasD.Remove(unaBolilla);
+        }
+
+        public bool jugar(List<byte> unaLista)
+        {   
+            
+            for(byte i=0;i<unaLista.Count;i++ )
+            {
+                if (unaLista[i] != this.sacarBolilla())
+                    return false;
+            }
+            return true;
+        }
+
+        public long jugarSimu(List<byte>jugada ,long cantSimu)
+        {
+            long cont = 0;
+            for (long i= 0; i < cantSimu; i++)
+			{
+                if(jugar(jugada))
+                {
+                    cont++;
+                }
+                reingresarBolillas();
+			}
+            return cont;
+
+        }
+
+        public object Clone()
+        {
+            Bolillero clon = new Bolillero();
+            clon.bolillasD = new List<byte>
+        }
     }
 }
