@@ -56,9 +56,9 @@ namespace Bolillero
             return true;
         }
 
-        public long jugarSimu(List<byte>jugada ,long cantSimu)
+        public ulong jugarSimu(List<byte>jugada ,long cantSimu)
         {
-            long cont = 0;
+            ulong cont = 0;
             for (long i= 0; i < cantSimu; i++)
 			{
                 if(jugar(jugada))
@@ -74,7 +74,10 @@ namespace Bolillero
         public object Clone()
         {
             Bolillero clon = new Bolillero();
-            clon.bolillasD = new List<byte>
+            clon.bolillasD = new List<byte>(this.bolillasD);
+            clon.bolillasA = new List<byte>(this.bolillasA);
+
+            return clon;
         }
     }
 }
