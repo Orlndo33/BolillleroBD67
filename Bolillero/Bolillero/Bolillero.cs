@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Bolillero
 {
-    public class Bolillero : ICloneable
+    public class Bolillero_ : ICloneable
     {
         Random r;
         List<byte> bolillasD { get; set; }
         List<byte> bolillasA { get; set; }
 
-        public Bolillero()
+        public Bolillero_()
         {
             bolillasA = new List<byte>();
             bolillasD = new List<byte>();
@@ -73,11 +73,19 @@ namespace Bolillero
 
         public object Clone()
         {
-            Bolillero clon = new Bolillero();
+            Bolillero_ clon = new Bolillero_();
             clon.bolillasD = new List<byte>(this.bolillasD);
             clon.bolillasA = new List<byte>(this.bolillasA);
 
             return clon;
+        }
+
+        public void ingresarBolillas(byte unNum)
+        {
+            for(int i = 0;i <unNum;i++)
+            {
+
+            }
         }
     }
 }

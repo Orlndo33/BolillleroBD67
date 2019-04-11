@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Bolillero
 {
-    class Simulacion
+    public class Simulacion
     {
         public ulong cantidadSimulaciones { get; set; }
         public ulong cantidadAciertos { get;private set; }
         public byte numero { get; set; }
-        public Bolillero Bolillero { get; set; }
+        public Bolillero_ Bolillero { get; set; }
 
         public ulong simularSinHilos(List<byte> jugada, long simu)
         {
@@ -21,11 +21,11 @@ namespace Bolillero
         public void simularConHilos(List<byte> jugada, long simu, int cantidadHilos)
         {
             List<Task<ulong>> hilos = new List<Task<ulong>>();
-            List<Bolillero> bolillero = new List<Bolillero>();
+            //List<Bolillero> bolillero = new List<Bolillero>();
             ulong cantidadPorHilo = this.cantidadSimulaciones / (ulong)cantidadHilos;
             for (int i = 0; i < cantidadHilos; i++)
             {
-                Bolillero bolilleroClon = (Bolillero)Bolillero.Clone();
+                Bolillero_ bolilleroClon = (Bolillero_)Bolillero.Clone();
                 Task<ulong> tarea = new Task<ulong>(() => bolilleroClon.jugarSimu(jugada,simu));
                 hilos.Add(tarea);
             }
