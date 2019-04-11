@@ -13,7 +13,7 @@ namespace Bolillero
         public byte numero { get; set; }
         public Bolillero Bolillero { get; set; }
 
-        public long simularSinHilos(List<byte> jugada, long simu)
+        public ulong simularSinHilos(List<byte> jugada, long simu)
         {
             return Bolillero.jugarSimu(jugada, simu);
         }
