@@ -8,14 +8,19 @@ namespace Bolillero
 {
     public class Bolillero_ : ICloneable
     {
-        Random r;
-        List<byte> bolillasD { get; set; }
-        List<byte> bolillasA { get; set; }
+        Random r = new Random();
+        public List<byte> bolillasD { get; set; }
+        public List<byte> bolillasA { get; set; }
 
-        public Bolillero_()
+        public Bolillero_(byte unaCantBolillas)
         {
             bolillasA = new List<byte>();
             bolillasD = new List<byte>();
+            agregarbolillasCount(unaCantBolillas);
+        }
+        public Bolillero_()
+        {
+
         }
 
         private int indiceAlAzar()
@@ -80,11 +85,11 @@ namespace Bolillero
             return clon;
         }
 
-        public void ingresarBolillas(byte unNum)
+        private void agregarbolillasCount(byte unNumero)
         {
-            for(int i = 0;i <unNum;i++)
+            for(byte i = 0; i<= unNumero; i++)
             {
-
+                bolillasD.Add(i);
             }
         }
     }
