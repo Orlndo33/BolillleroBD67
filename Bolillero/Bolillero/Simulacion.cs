@@ -10,7 +10,6 @@ namespace Bolillero
     {
         public ulong cantidadSimulaciones { get; set; }
         public ulong cantidadAciertos { get;private set; }
-        public byte numero { get; set; }
         public Bolillero_ Bolillero { get; set; }
 
         public void simularSinHilos(List<byte> jugada, long simu)
